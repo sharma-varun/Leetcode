@@ -5,23 +5,22 @@
 const sortedSquares = function (nums) {
   const result = Array(nums.length).fill(0);
 
-  let i = 0;
-  let j = nums.length - 1;
-  let k = j;
+  let pointerLeft = 0;
+  let pointerRight = nums.length - 1;
+  let i = pointerRight;
 
-  while (j >= i) {
-    const val1 = Math.abs(nums[i]);
-    const val2 = Math.abs(nums[j]);
+  while (pointerRight >= pointerLeft) {
+    const val1 = Math.abs(nums[pointerLeft]);
+    const val2 = Math.abs(nums[pointerRight]);
 
     if (val1 > val2) {
-      result[k] = val1 * val1;
-      i++;
-      k--;
+      result[i] = val1 * val1;
+      pointerLeft++;
     } else {
-      result[k] = val2 * val2;
-      j--;
-      k--;
+      result[i] = val2 * val2;
+      pointerRight--;
     }
+    i--;
   }
 
   return result;
